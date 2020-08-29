@@ -53,11 +53,28 @@ By incorporating SoftRas with a simple mesh generator, one can train the network
 Download shapenet rendering dataset provided by NMR:
 ```
 bash examples/recon/download_dataset.sh
+
+# will see
+Please download dataset from https://drive.google.com/open?id=1fY9IWK7yEfLOmS3wUgeXM3NIivhoGhsg, put it in ./data/mesh_reconstruction_dataset.zip, and run this script.
+
+# do bash mannualy
+rename unzip folder as ./data/datasets
+move all file in ./data/datasets/mesh_reconstruction to ./data/datasets
+remove ./data/datasets/mesh_reconstruction
 ```
 
 To train the model:
 ```
 CUDA_VISIBLE_DEVICES=0 python examples/recon/train.py -eid recon
+
+# solve error : Unable to allocate 1.92 GiB for an array
+
+1)
+sudo -i
+echo 1 > /proc/sys/vm/overcommit_memory
+exit
+2)
+set param -b <batch size>
 ```
 
 To test the model:
